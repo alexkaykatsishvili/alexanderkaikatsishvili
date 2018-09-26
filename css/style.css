@@ -2,12 +2,16 @@ html,
 body {
     margin: 0;
     padding: 0;
-    height: 100vh;
-    width: 100vw;
     background: #020b20;
-    background: -moz-linear-gradient(top, #020b20 0%, #061d3d 100%);
-    background: -webkit-linear-gradient(top, #020b20 0%, #061d3d 100%);
-    background: linear-gradient(to bottom, #020b20 0%, #061d3d 100%);
+}
+
+.mx-1200 {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.wrapper {
+    padding: 30px;
 }
 
 h1 {
@@ -16,11 +20,18 @@ h1 {
     text-transform: uppercase;
 }
 
+.lang {
+    margin-left: 30px;
+    color: #fff;
+}
+
+.lang a {
+    color: #fff;
+    text-decoration: none;
+}
+
 .content {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
+    margin-top: 25%;
 }
 
 .menu-container {
@@ -31,6 +42,7 @@ h1 {
     overflow: hidden;
     height: 100vh;
     width: 100vw;
+    top: 0;
     pointer-events: none;
 }
 
