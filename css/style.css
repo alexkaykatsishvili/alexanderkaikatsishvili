@@ -37,7 +37,7 @@ h2 {
 }
 
 .content {
-    margin-top: 20%;
+    margin-top: 10%;
 }
 
 .menu-container {
@@ -175,6 +175,45 @@ body.menu-open .plus-btn .r1 {
 body.menu-open .plus-btn .r2 {
     -webkit-transform: translateX(-50%) translateY(-50%) rotate(-135deg);
     transform: translateX(-50%) translateY(-50%) rotate(-135deg);
+}
+
+#form {
+    display: flex;
+    flex-direction: column;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+#form input,
+#form textarea {
+    height: 35px;
+    margin: 5px 0;
+    padding-left: 20px;
+    border: none;
+    border-radius: 5px;
+}
+
+#form input:focus,
+#form textarea:focus {
+    outline-offset: -3px;
+    outline-style: solid;
+    outline-width: medium;
+}
+
+#form textarea {
+    resize: none;
+    min-height: 100px;
+    padding: 20px;
+}
+
+#form button {
+    height: 35px;
+    border: none;
+    border-radius: 5px;
+    width: 260px;
+    margin-left: auto;
+    margin-top: 5px;
+    cursor: pointer;
 }
 
 
