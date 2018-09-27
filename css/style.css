@@ -184,35 +184,11 @@ body.menu-open .plus-btn .r2 {
     margin: 0 auto;
 }
 
-#form input,
-#form textarea {
-    height: 35px;
-    margin: 5px 0;
-    padding-left: 20px;
-    border: none;
-    border-radius: 5px;
-}
-
-#form input:focus,
-#form textarea:focus {
-    outline-offset: -3px;
-    outline-style: solid;
-    outline-width: medium;
-}
-
-#form textarea {
-    resize: none;
-    min-height: 100px;
-    padding: 20px;
-}
-
 #form button {
-    height: 35px;
+    height: 40px;
     border: none;
     border-radius: 5px;
     width: 260px;
-    margin-left: auto;
-    margin-top: 5px;
     cursor: pointer;
 }
 

@@ -16,14 +16,14 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Bootstrap CSS -->
-    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"> -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <title>Alexander Kaikatsishvili</title>
     <link rel="shortcut icon" href="../img/favicon.png" type="image/png">
     <link rel="stylesheet" href="../css/style.css">
 </head>
 
 <body>
-	<div class="plus-btn-pos">
+    <div class="plus-btn-pos">
         <div class="plus-btn">
             <div class="r1"></div>
             <div class="r2"></div>
@@ -43,34 +43,80 @@
             </ul>
         </div>
     </div>
-	<div class="wrapper">
-		<header class="header mx-1200">
-	        <div class="lang">
-	        	<a href="ua/">UA</a> | <a href="ru/">RU</a>
-	        </div>
-	    </header>
-	    <main class="main">
-	    	<div class="content">
-		        <h1>The site is under construction</h1>
+    <div class="wrapper">
+        <header class="header mx-1200">
+            <div class="lang">
+                <a href="../ua/">UA</a> | <a href="../ru/">RU</a>
+            </div>
+        </header>
+        <main class="main">
+            <div class="content">
+                <h1>The site is under construction</h1>
                 <h2>Contacts page</h2>
-                <form id="form" method="POST" action="https://formspree.io/alexander.kaykatsishvili@gmail.com">
-                  <input type="text" name="name" placeholder="Your name" required>
-                  <input type="email" name="email" placeholder="Your email" required>
-                  <input type="phone" name="phone" placeholder="Your phone" required>
-                  <textarea name="message" placeholder="Your message" required></textarea>
-                  <button type="submit">Send</button>
-                </form>
-		    </div>
-	    </main>
-	</div>
-    
-    
+                <div id="app">
+                    <form v-on:submit.prevent="onSubmit" id="form" method="POST" action="https://formspree.io/alexander.kaykatsishvili@gmail.com">
+                        <div class="form-group">
+                            <input v-model="model.name" v-validate="'required'" v-bind:class="{'form-control': true, 'error': errors.has('name') }" type="text" name="name" placeholder="Your name" required>
+                            <span v-show="errors.has('name')" class="text-danger">{{ errors.first('name') }}</span>
+                        </div>
+
+                        <div class="form-group">
+                            <input v-model="model.email" v-validate="'required|email'" v-bind:class="{'form-control': true, 'error': errors.has('email') }" type="email" name="email" placeholder="Your email" required>
+                            <span v-show="errors.has('email')" class="text-danger">{{ errors.first('email') }}</span>
+                        </div>
+
+                        <div class="form-group">
+                            <input v-model="model.phone" v-validate="'required'" v-bind:class="{'form-control': true, 'error': errors.has('phone') }" type="text" name="phone" placeholder="Your phone" required>
+                            <span v-show="errors.has('phone')" class="text-danger">{{ errors.first('phone') }}</span>
+                        </div>
+
+                        <div class="form-group">
+                            <textarea v-model="model.message" v-validate="'required|max:250'" v-bind:class="{'form-control': true, 'error': errors.has('message') }" name="message" placeholder="Your message" required></textarea>
+                            <span v-show="errors.has('message')" class="text-danger">{{ errors.first('message') }}</span>
+                        </div>
+
+                        <div class="form-group">
+                            <button type="submit" :disabled="errors.any()">Send</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </main>
+    </div>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vee-validate@latest/dist/vee-validate.js"></script>
+    <script>
+    Vue.use(VeeValidate);
+
+    new Vue({
+        el: '#app',
+        data: function() {
+            return {
+                model: {
+                    name: '',
+                    email: '',
+                    phone: '',
+                    message: ''
+                }
+            }
+        },
+        methods: {
+            onSubmit: function() {
+                this.$validator.validateAll().then(() => {
+                    console.log('form is valid', this.model)
+                }).catch(() => {
+                    console.log('errors exist', this.errors)
+                });
+            }
+        }
+    })
+    </script>
     <script src="../js/main.js"></script>
-	<!-- Go to www.addthis.com/dashboard to customize your tools -->
-	<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5bab1ec91a1ca4e8"></script>
+    <!-- Go to www.addthis.com/dashboard to customize your tools -->
+    <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5bab1ec91a1ca4e8"></script>
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script> -->
     <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script> -->
 </body>
