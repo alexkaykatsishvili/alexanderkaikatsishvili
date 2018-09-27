@@ -54,9 +54,10 @@
                 <h1>The site is under construction</h1>
                 <h2>Contacts page</h2>
                 <div id="app">
-                    <form v-on:submit.prevent="onSubmit" id="form" method="POST" action="https://formspree.io/alexander.kaykatsishvili@gmail.com">
+                    <!-- <form v-on:submit.prevent="onSubmit" id="form" method="POST" action="https://formspree.io/alexander.kaykatsishvili@gmail.com"> -->
+                    <form id="form" method="POST" action="https://formspree.io/alexander.kaykatsishvili@gmail.com">
                         <div class="form-group">
-                            <input v-model="model.name" v-validate="'required'" v-bind:class="{'form-control': true, 'error': errors.has('name') }" type="text" name="name" placeholder="Your name" required>
+                            <input v-model="model.name" v-validate="'required|alpha'" v-bind:class="{'form-control': true, 'error': errors.has('name') }" type="text" name="name" placeholder="Your name" required>
                             <span v-show="errors.has('name')" class="text-danger">{{ errors.first('name') }}</span>
                         </div>
 
@@ -66,7 +67,7 @@
                         </div>
 
                         <div class="form-group">
-                            <input v-model="model.phone" v-validate="'required'" v-bind:class="{'form-control': true, 'error': errors.has('phone') }" type="text" name="phone" placeholder="Your phone" required>
+                            <input v-model="model.phone" v-validate="{required: true}" v-mask="'+38 (###) ## ## ###'" v-bind:class="{'form-control': true, 'error': errors.has('phone') }" type="tel" name="phone" placeholder="Your phone" required>
                             <span v-show="errors.has('phone')" class="text-danger">{{ errors.first('phone') }}</span>
                         </div>
 
@@ -88,8 +89,10 @@
     <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vee-validate@latest/dist/vee-validate.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue-the-mask@0.11.1/dist/vue-the-mask.min.js"></script>
     <script>
     Vue.use(VeeValidate);
+    Vue.use(VueTheMask);
 
     new Vue({
         el: '#app',
@@ -98,20 +101,20 @@
                 model: {
                     name: '',
                     email: '',
-                    phone: '',
+                    phone: '+38',
                     message: ''
                 }
             }
         },
-        methods: {
-            onSubmit: function() {
-                this.$validator.validateAll().then(() => {
-                    console.log('form is valid', this.model)
-                }).catch(() => {
-                    console.log('errors exist', this.errors)
-                });
-            }
-        }
+        // methods: {
+        //     onSubmit: function() {
+        //         this.$validator.validateAll().then(() => {
+        //             console.log('form is valid', this.model)
+        //         }).catch(() => {
+        //             console.log('errors exist', this.errors)
+        //         });
+        //     }
+        // }
     })
     </script>
     <script src="../js/main.js"></script>
