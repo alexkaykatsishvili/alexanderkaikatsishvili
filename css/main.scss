@@ -1,9 +1,15 @@
+@import url('https://fonts.googleapis.com/css?family=Libre+Baskerville|Montserrat&subset=cyrillic');
+
+
 html,
 body {
     margin: 0;
     padding: 0; // height: 100%;
     // width: 100%;
-    background: rgb(2, 11, 32);
+    background: #eee;
+    background: linear-gradient(90deg, #eee 1%, transparent 1%) 1px 0, #fff;
+    background-size: 200px 1px;
+    font-family: 'Montserrat', sans-serif;
 }
 
 a {
@@ -22,21 +28,40 @@ a {
 
 h1,
 h2 {
-    color: #fff;
+    font-family: 'Libre Baskerville', serif;
+    color: #43413d;
     text-align: center;
     text-transform: uppercase;
 }
 
+.name {
+    font-size: 70px;
+    text-transform: none;
+    letter-spacing: .09em;
+}
+
 .lang {
     margin-left: 30px;
-    color: #fff;
+    color: #43413d;
     a {
-        color: #fff;
+        color: #43413d;
         text-decoration: none;
     }
 }
+.headlines {
+    display: flex;
+    padding: 0;
+    li {
+        list-style-type: none;
+        font-size: 30px;
+        color: #43413d;
+        font-family: 'Libre Baskerville', serif;
+            padding-right: 40px;
+    }
+}
+.main {
 
-.main {}
+}
 
 .content {
     margin-top: 10%;
@@ -79,7 +104,7 @@ h2 {
     font-family: 'Roboto', sans-serif;
     font-weight: 100;
     font-size: 45px;
-    color: white;
+    color: #62605c;
     min-height: 45px;
     padding: 15px;
     text-align: center;
@@ -87,6 +112,7 @@ h2 {
 
 .menu ul li a {
     cursor: pointer;
+    color: #43413d;
 }
 
 .menu-sliders {
@@ -103,7 +129,7 @@ h2 {
 }
 
 .menu-sliders:nth-child(odd) {
-    background: #005db7;
+    background: #eee;
 }
 
 .plus-btn-pos {
