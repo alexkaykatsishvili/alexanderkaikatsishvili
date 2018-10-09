@@ -44,6 +44,60 @@ h2 {
 p {
   color: #615d5d; }
 
+.preloader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transition: 1s;
+  z-index: 2000; }
+  .preloader:before {
+    content: "";
+    position: absolute;
+    left: 0;
+    width: 50%;
+    height: 100%;
+    background: #d4d0d0;
+    transition: 1s; }
+  .preloader.complete:before {
+    left: -50%; }
+  .preloader:after {
+    content: "";
+    position: absolute;
+    right: 0;
+    width: 50%;
+    height: 100%;
+    background: #d4d0d0;
+    transition: 1s; }
+  .preloader.complete:after {
+    right: -50%; }
+  .preloader .loader {
+    border: 16px solid #f3f3f3;
+    /* Light grey */
+    border-top: 16px solid rgba(109, 178, 255, 0.7);
+    /* Blue */
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    animation: spin 2s linear infinite;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    z-index: 2000; }
+  .preloader.complete {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none; }
+    .preloader.complete .loader {
+      display: none; }
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg); }
+  100% {
+    transform: rotate(360deg); } }
 .name {
   font-size: 70px;
   text-transform: none;
@@ -399,28 +453,28 @@ body.menu-open .plus-btn .r2 {
   animation: reveal 1s cubic-bezier(0, 1, 0.5, 1) 1 normal forwards; }
 
 .animate-first {
-  -webkit-animation-delay: 0;
-  -moz-animation-delay: 0;
-  -o-animation-delay: 0;
-  animation-delay: 0; }
-
-.animate-second {
   -webkit-animation-delay: 500ms;
   -moz-animation-delay: 500ms;
   -o-animation-delay: 500ms;
   animation-delay: 500ms; }
 
-.animate-third {
+.animate-second {
   -webkit-animation-delay: 1s;
   -moz-animation-delay: 1s;
   -o-animation-delay: 1s;
   animation-delay: 1s; }
 
-.animate-fourth {
+.animate-third {
   -webkit-animation-delay: 1.5s;
   -moz-animation-delay: 1.5s;
   -o-animation-delay: 1.5s;
   animation-delay: 1.5s; }
+
+.animate-fourth {
+  -webkit-animation-delay: 2s;
+  -moz-animation-delay: 2s;
+  -o-animation-delay: 2s;
+  animation-delay: 2s; }
 
 @-webkit-keyframes reveal {
   0% {
