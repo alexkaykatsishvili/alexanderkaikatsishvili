@@ -55,28 +55,50 @@
                 <div id="app">
                     <!-- <form v-on:submit.prevent="onSubmit" id="form" method="POST" action="https://formspree.io/alexander.kaykatsishvili@gmail.com"> -->
                     <form id="form" method="POST" action="https://formspree.io/alexander.kaykatsishvili@gmail.com">
-                        <div class="form-group">
-                            <input v-model="model.name" v-validate="'required|alpha'" v-bind:class="{'form-control': true, 'error': errors.has('name') }" type="text" name="name" placeholder="Your name" required>
-                            <span v-show="errors.has('name')" class="text-danger">{{ errors.first('name') }}</span>
+                        <div v-show="step === 1">
+                            <div class="form-group">
+                                <label for="exampleFormControlSelect1">Make a choice</label>
+                                <select v-model="calc.site" class="form-control" id="exampleFormControlSelect1">
+                                    <option v-bind:value="400">Landing page</option>
+                                    <option v-bind:value="1000">E-commerce</option>
+                                    <option v-bind:value="200">Blog</option>
+                                </select>
+                            </div>
+                            <div class="form-check">
+                                <input v-model="calc.check" true-value="100" false-value="0" type="checkbox" class="form-check-input" id="exampleCheck1">
+                                <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                            </div>
+                            <div class="form-check">
+                                <input v-model="calc.check2" true-value="200" false-value="0" type="checkbox" class="form-check-input" id="exampleCheck2">
+                                <label class="form-check-label" for="exampleCheck2">Check me out</label>
+                            </div>
+                            <div>Total price: {{total}}</div>
+                            <div>
+                                <p>Do you want to send your choices to me? Click the "Next" button!</p>
+                            </div>
+                            <button @click.prevent="next()">Next</button>
                         </div>
-
-                        <div class="form-group">
-                            <input v-model="model.email" v-validate="'required|email'" v-bind:class="{'form-control': true, 'error': errors.has('email') }" type="email" name="email" placeholder="Your email" required>
-                            <span v-show="errors.has('email')" class="text-danger">{{ errors.first('email') }}</span>
-                        </div>
-
-                        <div class="form-group">
-                            <input v-model="model.phone" v-validate="{required: true}" v-mask="'+38 (###) ## ## ###'" v-bind:class="{'form-control': true, 'error': errors.has('phone') }" type="tel" name="phone" placeholder="Your phone" required>
-                            <span v-show="errors.has('phone')" class="text-danger">{{ errors.first('phone') }}</span>
-                        </div>
-
-                        <div class="form-group">
-                            <textarea v-model="model.message" v-validate="'required|max:250'" v-bind:class="{'form-control': true, 'error': errors.has('message') }" name="message" placeholder="Your message" required></textarea>
-                            <span v-show="errors.has('message')" class="text-danger">{{ errors.first('message') }}</span>
-                        </div>
-
-                        <div class="form-group">
-                            <button type="submit" :disabled="errors.any()">Send</button>
+                        <div v-show="step === 2">
+                            <div class="form-group">
+                                <input v-model="model.name" v-validate="'required|alpha'" v-bind:class="{'form-control': true, 'error': errors.has('name') }" type="text" name="name" placeholder="Your name" required>
+                                <span v-show="errors.has('name')" class="text-danger">{{ errors.first('name') }}</span>
+                            </div>
+                            <div class="form-group">
+                                <input v-model="model.email" v-validate="'required|email'" v-bind:class="{'form-control': true, 'error': errors.has('email') }" type="email" name="email" placeholder="Your email" required>
+                                <span v-show="errors.has('email')" class="text-danger">{{ errors.first('email') }}</span>
+                            </div>
+                            <div class="form-group">
+                                <input v-model="model.phone" v-validate="{required: true}" v-mask="'+38 (###) ## ## ###'" v-bind:class="{'form-control': true, 'error': errors.has('phone') }" type="tel" name="phone" placeholder="Your phone" required>
+                                <span v-show="errors.has('phone')" class="text-danger">{{ errors.first('phone') }}</span>
+                            </div>
+                            <div class="form-group">
+                                <textarea v-model="model.message" v-validate="'required|max:250'" v-bind:class="{'form-control': true, 'error': errors.has('message') }" name="message" placeholder="Your message" required></textarea>
+                                <span v-show="errors.has('message')" class="text-danger">{{ errors.first('message') }}</span>
+                            </div>
+                            <button @click.prevent="prev()">Previous</button>
+                            <div class="form-group">
+                                <button type="submit" :disabled="errors.any()">Send</button>
+                            </div>
                         </div>
                     </form>
                 </div>
@@ -119,6 +141,12 @@
         el: '#app',
         data: function() {
             return {
+                step: 1,
+                calc: {
+                    site: '',
+                    check: '0',
+                    check2: '0'
+                },
                 model: {
                     name: '',
                     email: '',
@@ -127,15 +155,20 @@
                 }
             }
         },
-        // methods: {
-        //     onSubmit: function() {
-        //         this.$validator.validateAll().then(() => {
-        //             console.log('form is valid', this.model)
-        //         }).catch(() => {
-        //             console.log('errors exist', this.errors)
-        //         });
-        //     }
-        // }
+        computed: {
+            total: function() {
+                var total = parseInt(this.calc.check) + parseInt(this.calc.check2) + this.calc.site;
+                return total;
+            }
+        },
+        methods: {
+            prev() {
+                this.step--;
+            },
+            next() {
+                this.step++;
+            }
+        }
     })
     </script>
     <script src="../js/main.js"></script>
