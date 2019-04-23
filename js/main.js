@@ -1,8 +1,17 @@
 ;(function($){
     "use strict";
 
-	var height = window.innerHeight || document.body.clientHeight;
-    var width = window.innerWidth || document.body.clientWidth;
+    var height = window.innerHeight || document.body.clientHeight;
+	var width = window.innerWidth || document.body.clientWidth;
+
+ //    $( window ).resize(function() {
+	//     height = window.innerHeight || document.body.clientHeight;
+ //    	width = window.innerWidth || document.body.clientWidth;
+ //    	runAnimation();
+ //    	console.log(height, width);
+	// });
+
+	
 
 	var optionsBackground, bsBackground;
 
@@ -45,13 +54,16 @@
 	    centered: true,
 	    queue: true,
 	    width: width,
-	    height: height
+	    height: height,
 	};
 	bsBackground = new Brushstroke(optionsBackground);
 
 	// Function to start the animation
 
 	function runAnimation() {
+
+		// bsBackground.erase();
+
 	    // Draw a straight line
 	    bsBackground.draw({
 	        points: [0, height / 2 - 40, width, height / 3]
@@ -78,10 +90,13 @@
 	    });
 	}
 
+	
 
 	if($('#content').width() >= 745) {
 		// Start	
 	}
+
 	runAnimation();
+
 
 })(jQuery);
