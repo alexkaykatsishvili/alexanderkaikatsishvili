@@ -19,7 +19,7 @@
 </head>
 
 <body>
-    <div class="wrapper">
+    <div id="app" class="wrapper">
         <header class="header d-flex">
             <div class="header__logo">
                 <a href="./">
@@ -46,9 +46,13 @@
                     <a target="__blank" href="https://ru.wikipedia.org/wiki/%D0%92%D0%B5%D0%B1-%D1%80%D0%B0%D0%B7%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D0%BA%D0%B0">#Разработка</a>
                     <a target="__blank" href="">#Создание логотипа</a>
                 </div>
-                <button class="info__btn animated fadeInUpShort" data-id='4'>Оставить заявку</button>
-               
+                <button @click="isShow = !isShow" class="info__btn animated fadeInUpShort" data-id='4'>Оставить заявку</button>
             </div>
+            <form class="form" v-show="isShow" action="">
+                <input type="text">
+                <input type="text">
+                <input type="submit">
+            </form>
         </main>
         <footer class="footer d-flex">
             <div>
@@ -84,8 +88,17 @@
     <!--build:js js/main.min.js -->
     <!-- <script src="js/lib/brushstroke.min.js"></script> -->
     <script src="js/lib/jquery-3.3.1.min.js"></script>
-    <script src="js/lib/css3-animate-it.js"></script>
+    <!-- <script src="js/lib/css3-animate-it.js"></script> -->
     <script src="js/morph.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                isShow: false
+            }
+        })
+    </script>
     <!-- <script src="js/main.js"></script> -->
     <!-- endbuild -->
 </body>
