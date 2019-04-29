@@ -1,3 +1,10 @@
+::-moz-selection {
+  /* Code for Firefox */
+  background: #C2FFFB; }
+
+::selection {
+  background: #C2FFFB; }
+
 .d-flex {
   display: flex; }
 
@@ -9,6 +16,9 @@
   animation-duration: 1s;
   -webkit-animation-fill-mode: both;
   animation-fill-mode: both; }
+
+input[type="submit"]:disabled {
+  background: #ccc; }
 
 @-webkit-keyframes fadeInUpShort {
   0% {
@@ -64,6 +74,9 @@ a {
     display: flex;
     flex-direction: column;
     margin: 10px; }
+  .form__error {
+    color: #ec4e00;
+    font-size: 14px; }
 
 .wrapper {
   display: flex;
