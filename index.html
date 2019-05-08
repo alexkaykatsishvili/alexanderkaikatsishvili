@@ -15,13 +15,15 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-126359007-1"></script>
     <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
+    window.dataLayer = window.dataLayer || [];
 
-        gtag('config', 'UA-126359007-1');
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'UA-126359007-1');
     </script>
     <script type='text/javascript' src='//platform-api.sharethis.com/js/sharethis.js#property=5cc8409036d0970012b887be&product=sticky-share-buttons' async='async'></script>
+    <link href="https://fonts.googleapis.com/css?family=PT+Sans|Roboto&amp;subset=cyrillic" rel="stylesheet">
     <!--build:css css/styles.min.css-->
     <link rel="stylesheet" href="css/bootstrap-reboot.min.css">
     <link rel="stylesheet" href="css/styles.css">
@@ -38,11 +40,11 @@
             </div>
             <div class="form__wrapper">
                 <label class="form__label" for="phone">Ваш телефон</label>
-                <input v-mask="'+38 (###) ### ## ##'" v-validate="{ required: true, min: 19, regex: /[\+123456789\ \(\)]/}" class="form__input form__input--phone" name="phone" id="phone" type="tel" v-model="phone" required >
+                <input v-mask="'+38 (###) ### ## ##'" v-validate="{ required: true, min: 19 }" class="form__input form__input--phone" name="phone" id="phone" type="tel" v-model="phone" required>
                 <span class="form__error">{{ errors.first('phone') }}</span>
             </div>
             <div class="form__wrapper">
-                <input :disabled="!isComplete" class="btn" type="submit" value="Відправити">
+                <input :disabled="!isComplete" @click="downloadBrief" class="btn" type="submit" value="Відправити">
             </div>
         </form>
         <header class="header d-flex">
@@ -60,9 +62,12 @@
         </header>
         <main class="main d-flex">
             <div class="info animatedParent animateOnce" data-sequence='1000'>
-                <h1 class="info__title animated fadeInUpShort" data-id='1'>Розробка веб-сайтів</h1>
+                <h1 class="info__title animated fadeInUpShort" data-id='1'><span>Веб-сайт</span> для Вашого бізнесу <br> що виділить Вас серед конкурентів <br> та приверне увагу клієнтів</h1>
                 <p class="info__text animated fadeInUpShort" data-id='2'>
                     Креативна та ефективна розробка сайтів-візиток, посадочних сторінок для Вашого бізнесу. Індивідуальний підхід до кожного клієнта. Створюємо дружню атмосферу для досягнення найкращих результатів.
+                </p>
+                <p class="info__text animated fadeInUpShort" data-id='2'>
+                    Заказывая сайт у нас вы поддерживаете становление малого бизнеса; получаете команду специалистов которые хотят Вам помочь и быть полезными; помогаете переселенцам; 10% прибутку піде на допомогу людям із скрутним життєвим положенням;
                 </p>
                 <div class="info__tags animated fadeInUpShort" data-id='3'>
                     <a title="Дізнатися про дизайн сайту" target="__blank" href="https://ru.wikipedia.org/wiki/%D0%92%D0%B5%D0%B1-%D0%B4%D0%B8%D0%B7%D0%B0%D0%B9%D0%BD">#Дизайн</a>
@@ -108,11 +113,11 @@
     <script src="js/lib/jquery-3.3.1.min.js"></script>
     <script src="js/lib/css3-animate-it.js"></script>
     <script src="js/morph.js"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script> -->
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-    <!-- <script src="https://cdn.jsdelivr.net/npm/vee-validate@2.2.5/dist/vee-validate.min.js"></script> -->
     <script src="js/vee-validate.js"></script>
     <script src="js/uk.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vue-the-mask@0.11.1/dist/vue-the-mask.min.js"></script>
+    <script src="js/lib/vue-the-mask.min.js"></script>
     <script>
     Vue.use(VueTheMask);
     Vue.use(VeeValidate, {
@@ -124,6 +129,11 @@
         data: {
             name: '',
             phone: ''
+        },
+        methods: {
+            downloadBrief: function() {
+
+            }
         },
         computed: {
             isComplete() {
