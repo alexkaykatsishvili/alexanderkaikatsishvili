@@ -35,8 +35,13 @@
         <form id="app" class="form" action="https://mailthis.to/alexanderkaikatsishvili" method="POST">
             <div class="form__wrapper">
                 <label class="form__label" for="name">Ваше ім'я</label>
-                <input v-validate="'alpha'" class="form__input" name="name" id="name" type="text" required v-model="name">
+                <input v-validate="{required: true, alpha: true}" class="form__input" name="name" id="name" type="text" required v-model="name">
                 <span class="form__error">{{ errors.first('name') }}</span>
+            </div>
+            <div class="form__wrapper">
+                <label class="form__label" for="email">Ваша ел. пошта</label>
+                <input v-validate="{required: true, email: true}" class="form__input" name="email" id="email" type="email" required v-model="email">
+                <span class="form__error">{{ errors.first('email') }}</span>
             </div>
             <div class="form__wrapper">
                 <label class="form__label" for="phone">Ваш телефон</label>
@@ -61,20 +66,29 @@
             </div>
         </header>
         <main class="main d-flex">
-            <div class="info animatedParent animateOnce" data-sequence='1000'>
-                <h1 class="info__title animated fadeInUpShort" data-id='1'><span>Веб-сайт</span> для Вашого бізнесу <br> що виділить Вас серед конкурентів <br> та приверне увагу клієнтів</h1>
+            <div class="info animatedParent animateOnce" data-sequence='800'>
+                <h1 class="info__title animated fadeInUpShort" data-id='1'>Створити сайт - підняти Ваш бізнес <br> на новий рівень</h1>
                 <p class="info__text animated fadeInUpShort" data-id='2'>
                     Креативна та ефективна розробка сайтів-візиток, посадочних сторінок для Вашого бізнесу. Індивідуальний підхід до кожного клієнта. Створюємо дружню атмосферу для досягнення найкращих результатів.
                 </p>
-                <p class="info__text animated fadeInUpShort" data-id='2'>
-                    Заказывая сайт у нас вы поддерживаете становление малого бизнеса; получаете команду специалистов которые хотят Вам помочь и быть полезными; помогаете переселенцам; 10% прибутку піде на допомогу людям із скрутним життєвим положенням;
-                </p>
-                <div class="info__tags animated fadeInUpShort" data-id='3'>
+                <div class="info__text animated fadeInUpShort" data-id='3'>
+                    <p>Замовляючи сайт у нас, Ви:</p>
+                    <ul class="info__list">
+                        <li>підтримуєте становлення малого бізнесу;</li>
+                        <li>отримуєте команду фахівців, які хочуть Вам допомогти і бути корисними;</li>
+                        <li>10% від вартості розробки сайту передаєте на благодійність.</li>
+                    </ul>
+                </div>
+                <div class="info__tags animated fadeInUpShort" data-id='4'>
                     <a title="Дізнатися про дизайн сайту" target="__blank" href="https://ru.wikipedia.org/wiki/%D0%92%D0%B5%D0%B1-%D0%B4%D0%B8%D0%B7%D0%B0%D0%B9%D0%BD">#Дизайн</a>
                     <a title="Дізнатися про розробку сайту" target="__blank" href="https://ru.wikipedia.org/wiki/%D0%92%D0%B5%D0%B1-%D1%80%D0%B0%D0%B7%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D0%BA%D0%B0">#Розробка</a>
                     <a title="Дізнатися про проектування логотипу" target="__blank" href="#">#Проектування логотипу</a>
                 </div>
-                <button id="request" title="Залишити заявку" class="btn info__btn animated fadeInUpShort" data-id='4'>Залишити заявку</button>
+                <div class="animated fadeInUpShort" data-id='5'>
+<!--                    <p class="info__text">Залиште заявку і отримаєте бриф на розробку сайту.</p>-->
+                    <button id="request" title="Залишити заявку" class="btn info__btn">Залишити заявку</button>
+                </div>
+
             </div>
         </main>
         <footer class="footer d-flex">
@@ -128,7 +142,8 @@
         el: '#app',
         data: {
             name: '',
-            phone: ''
+            phone: '',
+            email: ''
         },
         methods: {
             downloadBrief: function() {
@@ -137,7 +152,7 @@
         },
         computed: {
             isComplete() {
-                return this.name && this.phone && !this.errors.any();
+                return this.name && this.email && this.phone && !this.errors.any();
             }
         }
     });
