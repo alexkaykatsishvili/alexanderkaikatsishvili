@@ -32,6 +32,8 @@
 
 <body>
     <div class="wrapper">
+<!--        <div class="cursor cursor&#45;&#45;small"></div>-->
+<!--        <canvas class="cursor cursor&#45;&#45;canvas" resize></canvas>-->
         <form id="app" class="form" action="https://mailthis.to/alexanderkaikatsishvili" method="POST">
             <div class="form__wrapper">
                 <label class="form__label" for="name">Ваше ім'я</label>
@@ -49,7 +51,7 @@
                 <span class="form__error">{{ errors.first('phone') }}</span>
             </div>
             <div class="form__wrapper">
-                <input :disabled="!isComplete" @click="downloadBrief" class="btn" type="submit" value="Відправити">
+                <input :disabled="!isComplete" class="btn" type="submit" value="Відправити">
             </div>
         </form>
         <header class="header d-flex">
@@ -74,9 +76,9 @@
                 <div class="info__text animated fadeInUpShort" data-id='3'>
                     <p>Замовляючи сайт у нас, Ви:</p>
                     <ul class="info__list">
-                        <li>підтримуєте становлення малого бізнесу;</li>
-                        <li>отримуєте команду фахівців, які хочуть Вам допомогти і бути корисними;</li>
-                        <li>10% від вартості розробки сайту передаєте на благодійність.</li>
+                        <li><span>підтримуєте становлення малого бізнесу;</span></li>
+                        <li><span>отримуєте команду фахівців, які хочуть Вам допомогти і бути корисними;</span></li>
+                        <li><span>10% від вартості розробки сайту передаєте на благодійність.</span></li>
                     </ul>
                 </div>
                 <div class="info__tags animated fadeInUpShort" data-id='4'>
@@ -88,7 +90,12 @@
 <!--                    <p class="info__text">Залиште заявку і отримаєте бриф на розробку сайту.</p>-->
                     <button id="request" title="Залишити заявку" class="btn info__btn">Залишити заявку</button>
                 </div>
-
+            </div>
+            <div class="illustration"></div>
+            <div class="morph-wrap">
+                <svg class="morph" width="1000" height="650" viewBox="0 0 1400 770">
+                    <path d="M 262.9,252.2 C 210.1,338.2 212.6,487.6 288.8,553.9 372.2,626.5 511.2,517.8 620.3,536.3 750.6,558.4 860.3,723 987.3,686.5 1089,657.3 1168,534.7 1173,429.2 1178,313.7 1096,189.1 995.1,130.7 852.1,47.07 658.8,78.95 498.1,119.2 410.7,141.1 322.6,154.8 262.9,252.2 Z" />
+                </svg>
             </div>
         </main>
         <footer class="footer d-flex">
@@ -116,12 +123,6 @@
             </div>
         </footer>
         <div class="back"></div>
-        <div class="illustration"></div>
-        <div class="morph-wrap">
-            <svg class="morph" width="1000" height="650" viewBox="0 0 1400 770">
-                <path d="M 262.9,252.2 C 210.1,338.2 212.6,487.6 288.8,553.9 372.2,626.5 511.2,517.8 620.3,536.3 750.6,558.4 860.3,723 987.3,686.5 1089,657.3 1168,534.7 1173,429.2 1178,313.7 1096,189.1 995.1,130.7 852.1,47.07 658.8,78.95 498.1,119.2 410.7,141.1 322.6,154.8 262.9,252.2 Z" />
-            </svg>
-        </div>
     </div>
     <!--build:js js/main.min.js -->
     <script src="js/lib/jquery-3.3.1.min.js"></script>
@@ -132,6 +133,8 @@
     <script src="js/vee-validate.js"></script>
     <script src="js/uk.js"></script>
     <script src="js/lib/vue-the-mask.min.js"></script>
+<!--    <script src="https://cdnjs.cloudflare.com/ajax/libs/paper.js/0.12.0/paper-core.min.js"></script>-->
+<!--    <script src="https://cdnjs.cloudflare.com/ajax/libs/simplex-noise/2.4.0/simplex-noise.min.js"></script>-->
     <script>
     Vue.use(VueTheMask);
     Vue.use(VeeValidate, {
@@ -144,11 +147,6 @@
             name: '',
             phone: '',
             email: ''
-        },
-        methods: {
-            downloadBrief: function() {
-
-            }
         },
         computed: {
             isComplete() {
