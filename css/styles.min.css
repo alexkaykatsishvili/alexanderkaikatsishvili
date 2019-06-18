@@ -292,6 +292,6 @@ footer svg:hover path {
   .form {
     width: 90%; } }
 
-@media (max-height: 700px) {
+@media (max-height: 750px) {
   .main {
     padding: 5% 0; } }
